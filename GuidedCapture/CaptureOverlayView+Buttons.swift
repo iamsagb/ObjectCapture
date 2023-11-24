@@ -191,6 +191,33 @@ extension CaptureOverlayView {
             })
         }
     }
+    
+    struct CapturedItems: View {
+        
+        @Binding var showCapturedModelView: Bool
+        
+        var body: some View {
+            Button(action: {
+                logger.log("\(LocalizedString.help) button clicked!")
+                withAnimation {
+                    showCapturedModelView = true
+                }
+            }, label: {
+                VStack(spacing: 10) {
+                    Image(systemName: "rotate.3d.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 22)
+
+                    Text("Files")
+                        .font(.footnote)
+                        .opacity(0.7)
+                        .fontWeight(.semibold)
+                }
+                .foregroundColor(.white)
+            })
+        }
+    }
 
     @available(iOS 17.0, *)
     struct CancelButton: View {

@@ -17,6 +17,7 @@ struct CapturePrimaryView: View {
     // Pauses the scanning and shows tutorial pages. This sample passes it as
     // a binding to the two views so buttons can change the state.
     @State var showInfo: Bool = false
+    @State var showFiles: Bool = false
     @State private var showOnboardingView: Bool = false
 
     var body: some View {
@@ -26,12 +27,15 @@ struct CapturePrimaryView: View {
             .blur(radius: appModel.showPreviewModel ? 45 : 0)
             .transition(.opacity)
             if shouldShowOverlayView {
-                CaptureOverlayView(session: session, showInfo: $showInfo)
+                CaptureOverlayView(session: session, showInfo: $showInfo, showObjectList: $showFiles)
             }
         }
         .sheet(isPresented: $showInfo) {
             HelpPageView(showInfo: $showInfo)
                 .padding()
+        }
+        .sheet(isPresented: $showFiles) {
+            FilesView(showFiles: $showFiles)
         }
         .sheet(isPresented: $showOnboardingView,
                onDismiss: { [weak appModel] in appModel?.setPreviewModelState(shown: false) },

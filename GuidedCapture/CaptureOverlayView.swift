@@ -17,6 +17,7 @@ struct CaptureOverlayView: View {
     // This sample passes the binding from parent to allow this view
     // to control whether certain panels are shown in `CapturePrimaryView`.
     @Binding var showInfo: Bool
+    @Binding var showObjectList: Bool
 
     @State private var hasDetectionFailed = false
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -75,9 +76,11 @@ struct CaptureOverlayView: View {
 
                 HStack {
                     Spacer()
-
                     if !capturingStarted {
                         HelpButton(showInfo: $showInfo)
+                            .transition(.opacity)
+                        Spacer()
+                        CapturedItems(showCapturedModelView: $showObjectList)
                             .transition(.opacity)
                     } else if case .capturing = session.state {
                         ManualShotButton(session: session)
