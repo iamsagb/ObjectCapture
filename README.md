@@ -2,13 +2,11 @@
 
 Implement a full scanning workflow for capturing objects on iOS devices.
 
-## Overview
-- Note: This sample code project is associated with WWDC23 session 10191: 
-[Meet Object Capture for iOS](https://developer.apple.com/wwdc23/10191/).
+#What's New
+1. Add Files View to view all the captured onjects list.
+2. Ability to view the captured object in default ARView.
 
-You need to run this sample code project on a physical device.
-
-## Configure the sample code project
+## Configure the project
 
 To run this sample app, you need an iPhone or iPad with the following: 
 - A LiDAR Scanner
